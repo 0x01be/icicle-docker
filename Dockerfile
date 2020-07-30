@@ -10,7 +10,10 @@ COPY --from=yosys /opt/yosys/ /opt/yosys/
 COPY --from=icestorm /opt/icestorm/ /opt/icestorm/
 COPY --from=nextpnr /opt/nextpnr/ /opt/nextpnr/
 
-RUN apk --no-cache add \
+RUN apk add --no-cache --virtual build-dependencies \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     build-base \
     git \
     gettext-dev \
